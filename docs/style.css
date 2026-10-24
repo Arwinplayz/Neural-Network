@@ -1,0 +1,445 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --panel: #111215;
+  --panel-inner: #0c0d10;
+  --border: #2a2c31;
+  --text: #ebedf1;
+  --muted: #858a94;
+  --dim: #454a54;
+  --accent: #4abeff;
+  --active-green: #6fecad;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+body {
+  min-height: 100vh;
+  padding: 24px 32px 16px;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #313131, transparent), var(--bg);
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 20px;
+}
+h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.eyebrow {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.045em;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--active-green);
+  white-space: nowrap;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--active-green);
+  box-shadow: 0 0 12px #6fecad66;
+}
+.dashboard {
+  width: 100%;
+  max-width: 3200px;
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: minmax(270px, 0.235fr) minmax(420px, 0.53fr) minmax(
+      270px,
+      0.235fr
+    );
+  gap: 20px;
+  align-items: stretch;
+  min-height: calc(100vh - 174px);
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  min-width: 0;
+  padding: 22px 24px;
+  position: relative;
+}
+.panel-heading h2 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+.panel-heading p {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 8px 0 0;
+}
+.panel-heading .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.panel-heading .description {
+  font-size: 14px;
+}
+.drawing-panel {
+  display: flex;
+  flex-direction: column;
+}
+#draw-canvas {
+  display: block;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  height: auto;
+  align-self: center;
+  margin: auto 0;
+  background: #050608;
+  border: 1px solid #30333b;
+  border-radius: 10px;
+  touch-action: none;
+  cursor: crosshair;
+}
+.drawing-controls {
+  display: grid;
+  grid-template-columns: minmax(100px, 140px) minmax(100px, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-top: 18px;
+}
+.panel-inner {
+  background: var(--panel-inner);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.input-preview {
+  padding: 10px 10px 12px;
+  min-width: 0;
+}
+.preview-heading {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.preview-subtitle {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+#input-preview {
+  display: block;
+  width: min(100%, 94px);
+  aspect-ratio: 1;
+  height: auto;
+  image-rendering: pixelated;
+  margin: 8px auto 0;
+  border: 1px solid var(--border);
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  min-height: 40px;
+  width: 100%;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel-inner);
+  font:
+    600 13px Inter,
+    sans-serif;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s,
+    transform 0.15s;
+}
+button:hover {
+  border-color: #4ab eff;
+  border-color: #4abeff;
+  background: #111923;
+}
+button:active {
+  transform: translateY(1px);
+}
+.predict-button {
+  color: #7fdaff;
+}
+.network-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 640px;
+}
+.network-stage {
+  flex: 1;
+  min-height: 360px;
+  margin-top: 8px;
+  position: relative;
+}
+#network-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.layer-labels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+  text-align: center;
+  padding-top: 4px;
+}
+.layer-labels div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.layer-labels strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.layer-labels span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.prediction-panel {
+  display: flex;
+  flex-direction: column;
+}
+.result-card {
+  min-height: 220px;
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+.predicted-digit {
+  font-size: 100px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+.result-caption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.scores-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0 14px;
+}
+.scores-heading h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+.scores-heading span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.score-row {
+  display: grid;
+  grid-template-columns: 14px minmax(40px, 1fr) 48px;
+  gap: 10px;
+  align-items: center;
+  min-height: 15px;
+}
+.score-digit {
+  color: var(--muted);
+  font-size: 13px;
+}
+.score-digit.best {
+  color: var(--text);
+}
+.score-track {
+  height: 7px;
+  background: #25272d;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.score-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: var(--accent);
+  transition: width 0.12s ease;
+}
+.score-fill.best {
+  background: var(--active-green);
+}
+.score-value {
+  text-align: right;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.score-value.best {
+  color: var(--active-green);
+}
+.shortcuts {
+  display: flex;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+footer {
+  max-width: 3200px;
+  margin: 20px auto 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 11px;
+}
+footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+footer a:hover {
+  color: var(--text);
+}
+@media (min-width: 1800px) {
+  body {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .dashboard {
+    min-height: calc(100vh - 174px);
+  }
+  #draw-canvas {
+    width: min(100%, 520px);
+  }
+  .result-card {
+    min-height: 260px;
+  }
+}
+@media (max-width: 1200px) {
+  body {
+    padding: 20px;
+  }
+  .dashboard {
+    grid-template-columns: minmax(240px, 0.8fr) minmax(420px, 1.4fr);
+    min-height: 0;
+  }
+  .prediction-panel {
+    grid-column: 1 / -1;
+  }
+  .scores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 22px;
+  }
+  .result-card {
+    min-height: 160px;
+  }
+  .drawing-panel,
+  .network-panel {
+    min-height: 620px;
+  }
+}
+@media (max-width: 760px) {
+  body {
+    padding: 16px 12px;
+  }
+  .topbar {
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .status {
+    font-size: 10px;
+    gap: 6px;
+    margin-top: 5px;
+  }
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .panel {
+    padding: 20px 16px;
+  }
+  .drawing-panel {
+    min-height: 0;
+  }
+  #draw-canvas {
+    width: min(100%, 380px);
+    margin: 24px auto 0;
+  }
+  .drawing-controls {
+    grid-template-columns: 112px minmax(0, 1fr);
+    margin-top: 14px;
+  }
+  .input-preview {
+    padding: 8px;
+  }
+  .preview-heading {
+    font-size: 10px;
+  }
+  .preview-subtitle {
+    font-size: 10px;
+  }
+  .network-panel {
+    min-height: 560px;
+  }
+  .network-stage {
+    min-height: 380px;
+  }
+  .layer-labels strong {
+    font-size: 10px;
+  }
+  .layer-labels span {
+    font-size: 9px;
+  }
+  .prediction-panel {
+    min-height: 0;
+  }
+  .result-card {
+    min-height: 170px;
+  }
+  .scores {
+    display: flex;
+  }
+  footer {
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+}

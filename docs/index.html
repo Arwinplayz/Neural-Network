@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08090b" />
+    <title>Neural Network Visualiser</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>NEURAL NETWORK</h1>
+        <p class="eyebrow">DIGIT CLASSIFIER</p>
+      </div>
+      <div id="model-status" class="status">
+        <span class="status-dot"></span><span>LOADING MODEL</span>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel drawing-panel">
+        <div class="panel-heading">
+          <h2>Drawing</h2>
+          <p>Draw a digit from 0 to 9</p>
+        </div>
+        <canvas
+          id="draw-canvas"
+          width="280"
+          height="280"
+          aria-label="Draw a digit"
+        ></canvas>
+        <div class="drawing-controls">
+          <div class="input-preview panel-inner">
+            <div class="preview-heading">28 × 28 INPUT</div>
+            <div class="preview-subtitle">Model input</div>
+            <canvas id="input-preview" width="28" height="28"></canvas>
+          </div>
+          <div class="buttons">
+            <button id="predict-button" class="predict-button">PREDICT</button>
+            <button id="clear-button" class="clear-button">
+              CLEAR&nbsp; [C]
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel network-panel">
+        <div class="panel-heading network-heading">
+          <h2>Network activity</h2>
+          <p class="eyebrow">LIVE ACTIVATIONS</p>
+          <p class="description">
+            Brighter nodes and lines indicate stronger activity
+          </p>
+        </div>
+        <div class="network-stage">
+          <canvas
+            id="network-canvas"
+            aria-label="Neural network activation visualisation"
+          ></canvas>
+        </div>
+        <div class="layer-labels">
+          <div><strong>INPUT</strong><span>784 pixels</span></div>
+          <div><strong>HIDDEN 1</strong><span>16 neurons</span></div>
+          <div><strong>HIDDEN 2</strong><span>16 neurons</span></div>
+          <div><strong>OUTPUT</strong><span>10 classes</span></div>
+        </div>
+      </section>
+
+      <section class="panel prediction-panel">
+        <div class="panel-heading">
+          <h2>Prediction</h2>
+          <p class="eyebrow">CLASSIFICATION RESULT</p>
+        </div>
+        <div class="result-card panel-inner">
+          <div id="predicted-digit" class="predicted-digit">—</div>
+          <div id="result-caption" class="result-caption">
+            Draw a digit to begin
+          </div>
+        </div>
+        <div class="scores-heading">
+          <h3>Output scores</h3>
+          <span>0–9</span>
+        </div>
+        <div id="scores" class="scores"></div>
+        <div class="shortcuts">
+          <span>C&nbsp; Clear</span><span>Enter&nbsp; Predict</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>784 → 16 → 16 → 10</span>
+      <span>Python · Sigmoid · MNIST</span>
+      <span
+        ><a href="https://github.com/" id="source-link">Source code</a></span
+      >
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
